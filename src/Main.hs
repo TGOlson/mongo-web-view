@@ -2,7 +2,6 @@ module Main where
 
 
 import Web.Spock.Safe
-
 import Web.Routes
 
 
