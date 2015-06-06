@@ -1,9 +1,8 @@
 module Main where
 
 
-import Web.Spock.Safe
-import Web.Routes
+import Web.Server
 
 
 main :: IO ()
-main = runSpock 3000 $ spockT id routes
+main = runWebServer

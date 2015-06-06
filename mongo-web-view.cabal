@@ -63,7 +63,9 @@ executable mongo-web-view
   build-depends:       base >=4.7 && <4.8,
                        Spock >= 0.7 && < 1,
                        aeson >= 0.8 && < 1,
-                       text
+                       text,
+                       mongoDB,
+                       mtl
 
   -- Directories containing source files.
   hs-source-dirs:      src
