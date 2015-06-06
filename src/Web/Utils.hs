@@ -1,14 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Web.Actions.Utils where
+module Web.Utils where
 
 
 import Web.Scotty
 import Data.Aeson hiding (json)
 
 
-toJsonAction :: ToJSON a => a -> ActionM ()
-toJsonAction = json . formatResults
+toJsonResults :: ToJSON a => a -> ActionM ()
+toJsonResults = json . formatResults
 
 
 formatResults :: ToJSON a => a -> Value
