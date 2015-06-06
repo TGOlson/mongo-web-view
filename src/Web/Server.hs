@@ -1,12 +1,9 @@
 module Web.Server where
 
 
-import Web.Spock.Safe
+import Web.Scotty
 import Web.Routes
 
 
 runWebServer :: IO ()
-runWebServer = runSpock 3000 $ spockT id routes
-
-
--- log
+runWebServer = scotty 3000 routes

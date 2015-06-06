@@ -3,11 +3,11 @@
 module Web.Actions.Utils where
 
 
-import Web.Spock.Safe
+import Web.Scotty
 import Data.Aeson hiding (json)
 
 
-toJsonAction :: ToJSON a => a -> ActionT IO ()
+toJsonAction :: ToJSON a => a -> ActionM ()
 toJsonAction = json . formatResults
 
 

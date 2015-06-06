@@ -6,6 +6,10 @@ module DB.DB where
 import Database.MongoDB
 
 
+-- let run act = access pipe master "test" act
+-- run $ findOne $ select [] "posts"
+
+
 connectTo :: String -> IO Pipe
 connectTo = connect . host
 
