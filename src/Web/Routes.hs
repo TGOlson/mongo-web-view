@@ -7,6 +7,7 @@ import Web.Scotty
 import Web.Utils
 import Web.Actions.Database
 import Control.Monad.Trans (liftIO)
+import Data.AesonBson
 
 
 routes :: ScottyM ()
@@ -26,4 +27,4 @@ routes = do
       db <- param "db"
       collection <- param "collection"
       docs <- liftIO $ getAllDocuments "127.0.0.1" db collection
-      toJsonResults $ map show docs
+      json . show $ map aesonify docs
