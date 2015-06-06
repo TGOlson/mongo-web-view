@@ -7,3 +7,6 @@ import Web.Routes
 
 runWebServer :: IO ()
 runWebServer = runSpock 3000 $ spockT id routes
+
+
+-- log

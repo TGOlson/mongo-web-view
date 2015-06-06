@@ -15,8 +15,12 @@ runAction action dbName pipe = access pipe master dbName action
 
 
 withConnection :: (Pipe -> IO a) -> String -> IO a
-withConnection dbAction hostName = connectTo hostName >>= dbAction
+withConnection dbAction hostName = dbAction =<< connectTo hostName
 
 
 runActionWithConnection :: Action IO a -> String -> Database -> IO a
-runActionWithConnection action hostName dbName =  withConnection (runAction action dbName) hostName
+runActionWithConnection action hostName dbName = withConnection (runAction action dbName) hostName
+
+
+findAll :: Collection -> Action IO [Document]
+findAll collectionName = rest =<< find (select [] collectionName)
