@@ -21,6 +21,7 @@ Go to `localhost:3000` to check it out.
 Run tests
 
 ```
+$ cabal install --enable-tests
 $ cabal test
 Running 1 test suites...
 Test suite spec: RUNNING...
