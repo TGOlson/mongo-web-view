@@ -1,6 +1,4 @@
 {-# LANGUAGE OverloadedStrings   #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-
 
 module Integration.IntegrationSpec where
 
@@ -11,8 +9,6 @@ import Control.Lens ((^.))
 import Network.Wreq
 import Integration.Data
 import Integration.Setup
--- import Data.AesonBson
--- import Database.MongoDB
 
 
 mkUrl :: String -> String

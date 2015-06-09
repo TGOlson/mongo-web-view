@@ -1,13 +1,8 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module DB.DB where
 
 
 import Database.MongoDB
-
-
--- let run act = access pipe master "test" act
--- run $ findOne $ select [] "posts"
+import Data.Aeson.Bson()
 
 
 connectTo :: String -> IO Pipe

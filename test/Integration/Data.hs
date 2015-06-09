@@ -1,6 +1,4 @@
-{-# LANGUAGE OverloadedStrings    #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE FlexibleInstances   #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Integration.Data where
 
@@ -11,8 +9,7 @@ import Control.Applicative
 import Control.Monad
 
 
--- Create test doc data type to resolve issue of aeson versions
--- between aeson-bson and wreq
+-- Create test doc data type to resolve issue of aeson versions between aeson-bson and wreq
 data TestDoc = TestDoc { title :: String } deriving (Show, Eq)
 
 

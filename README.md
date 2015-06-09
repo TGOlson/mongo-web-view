@@ -22,9 +22,7 @@ Run tests
 
 ```
 $ cabal test
-GET /databases/:db
-  should return a list of collections for the specified database
-
-Finished in 0.0484 seconds
-1 example, 0 failures
+Running 1 test suites...
+Test suite spec: RUNNING...
+Test suite spec: PASS
 ``
