@@ -1,0 +1,19 @@
+app:
+  build: .
+  links:
+   - db
+  ports:
+   - "8000:8000"
+  command: cabal run app
+
+db:
+  image: mongo
+  # ports:
+  #   - "27017"
+
+test:
+  build: .
+  links:
+    - app
+    - db
+  command: cabal run test

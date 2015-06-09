@@ -29,11 +29,8 @@ docs :: [Document]
 docs = map (\(TestDoc t) -> ["title" =: t]) testDocs
 
 
-databases :: [Database]
-databases = [
-    "_testdb",
-    "xemptydb"
-  ]
+testDb :: Database
+testDb = "_testdb"
 
 
 collections :: [Collection]

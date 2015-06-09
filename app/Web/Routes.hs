@@ -8,21 +8,25 @@ import Web.Actions.Database
 import Control.Monad.Trans (liftIO)
 
 
+dbName :: String
+dbName = "db"
+-- dbName = "127.0.0.1"
+
 routes :: ScottyM ()
 routes = do
-  get "/" $ file "src/Web/Views/index.html"
+  get "/" $ file "app/Web/Views/index.html"
 
   get "/databases" $ do
-      dbs <- liftIO $ getAllDatabases "127.0.0.1"
+      dbs <- liftIO $ getAllDatabases dbName
       json dbs
 
   get "/databases/:db" $ do
       db <- param "db"
-      collections <- liftIO $ getAllCollections "127.0.0.1" db
+      collections <- liftIO $ getAllCollections dbName db
       json collections
 
   get "/databases/:db/:collection" $ do
       db <- param "db"
       collection <- param "collection"
-      docs <- liftIO $ getAllDocuments "127.0.0.1" db collection
+      docs <- liftIO $ getAllDocuments dbName db collection
       json docs

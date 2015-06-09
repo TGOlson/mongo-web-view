@@ -6,4 +6,4 @@ import Web.Routes
 
 
 runWebServer :: IO ()
-runWebServer = scotty 3000 routes
+runWebServer = scotty 8000 routes
