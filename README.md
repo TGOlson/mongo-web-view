@@ -21,15 +21,10 @@ Go to `localhost:3000` to check it out.
 Run tests
 
 ```
-$ runhaskell test/IntegrationSpec.hs
+$ cabal test
 GET /databases/:db
   should return a list of collections for the specified database
 
 Finished in 0.0484 seconds
 1 example, 0 failures
 ``
-
-TODO: `cabal test`
-
-http://hspec.github.io/
-https://pbrisbin.com/posts/automated_unit_testing_in_haskell/

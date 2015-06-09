@@ -30,7 +30,11 @@ getRespondBody url = do
 
 
 main :: IO ()
-main = hspec $ do
+main = hspec spec
+
+
+spec :: Spec
+spec = do
   describe "GET /databases" $
     it "should return a list of databases" $
       getRespondBody "/databases" `shouldReturn` expectedDatabases

@@ -77,16 +77,14 @@ executable mongo-web-view
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
---
--- Test-Suite test-mongo-web-view
---   type:               exitcode-stdio-1.0
---   main-is:            test-mongo-web-view.hs
---   hs-source-dirs:     test
---   build-depends:      base >=4.7 && <4.8,
---                       HUnit,
---                       wreq,
---                       aeson,
---                       lens
---                       -- test-framework,
---                       -- test-framework-hunit,
---                       -- containers == 0.5.*
+
+
+test-suite spec
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   test
+  main-is:          Spec.hs
+  build-depends:    base >=4.7 && <4.8,
+                    wreq,
+                    aeson,
+                    hspec,
+                    lens
