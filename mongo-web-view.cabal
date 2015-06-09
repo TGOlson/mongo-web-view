@@ -22,10 +22,10 @@ version:             0.1.0.0
 homepage:            https://github.com/TGOlson/mongo-web-view.git
 
 -- The license under which the package is released.
--- license:
+license:             MIT
 
 -- The file containing the license text.
-license-file:        LICENSE
+-- license-file:        LICENSE
 
 -- The package author(s).
 author:              Tyler Olson
@@ -62,14 +62,15 @@ executable mongo-web-view
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.7 && <4.8,
                        scotty,
-                       aeson,
+                       aeson >= 0.6 && <0.7,
                        text,
                        mongoDB,
                        mtl,
-                       AesonBson,
+                       aeson-bson,
                        wreq,
-                       hspec,
-                       lens
+                       lens,
+                       hspec
+
 
 
   -- Directories containing source files.
@@ -84,7 +85,9 @@ test-suite spec
   hs-source-dirs:   test
   main-is:          Spec.hs
   build-depends:    base >=4.7 && <4.8,
-                    wreq,
-                    aeson,
                     hspec,
+                    aeson >= 0.6 && <0.7,
+                    mongoDB,
+                    containers,
+                    wreq,
                     lens
