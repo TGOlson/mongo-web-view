@@ -18,6 +18,15 @@ $ cabal run
 
 Go to `localhost:3000` to check it out.
 
+Or, build with docker
+
+```
+$ docker build -t mongo-web-view .
+$ docker run -i -t -d -p 8000:3000 mongo-web-view
+```
+
+Go to `<boot2docker ip>:8000` to check it out.
+
 Run tests
 
 ```
