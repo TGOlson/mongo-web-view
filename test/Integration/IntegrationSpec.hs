@@ -12,8 +12,8 @@ import Integration.Setup
 
 
 mkUrl :: String -> String
-mkUrl s = "http://192.168.59.103:8000" ++ s
--- mkUrl s = "http://localhost:8000" ++ s
+-- mkUrl s = "http://192.168.59.103:8000" ++ s
+mkUrl s = "http://localhost:8000" ++ s
 
 
 getParsedBody :: FromJSON a => String -> IO (Maybe a)
@@ -21,10 +21,6 @@ getParsedBody url = do
   r <- simpleHTTP $ getRequest (mkUrl url)
   rsp <- getResponseBody r
   return . decode $ pack rsp
-
-
-shouldReturnJust :: (Show a, Eq a) => IO (Maybe a) -> a -> Expectation
-shouldReturnJust io x = io `shouldReturn` Just x
 
 
 main :: IO ()
@@ -38,12 +34,12 @@ spec = before_ seedTestDb $ do
 
       -- only check that the test-db is included in the response
       -- asserting against all dbs requires first dropping all dbs
-      getParsedBody "/databases" >>= (\(Just dbs) -> testDb `elem` dbs `shouldBe` True)
+      getParsedBody "/databases" >>= (\(Just dbs) -> dbs `shouldContain` [testDb])
 
   describe "GET /databases/:db" $
     it "should return a list of collections for the specified database" $
-      getParsedBody "/databases/_testdb" `shouldReturnJust` collections
+      getParsedBody "/databases/_testdb" `shouldReturn` Just collections
 
   describe "GET /databases/:db/:collection" $
     it "should return a list of docs for the specified collection" $
-      getParsedBody "/databases/_testdb/_testcollection" `shouldReturnJust` testDocs
+      getParsedBody "/databases/_testdb/_testcollection" `shouldReturn` Just testDocs
