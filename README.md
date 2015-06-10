@@ -10,7 +10,7 @@ Run with docker and docker compose
 
 ```
 $ docker-compose build
-$ docker-compose up app
+$ docker-compose up server
 ```
 
 Run the tests

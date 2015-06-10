@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Web.Actions.Database where
+module Actions.Database where
 
 
 import Database.MongoDB
-import DB.DB
+import Services.DB
 
 
 getAllDatabases :: String -> IO [Database]

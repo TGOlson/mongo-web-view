@@ -7,7 +7,8 @@ ADD mongo-web-view.cabal ./code/mongo-web-view.cabal
 
 # Docker will cache this command as a layer, freeing us up to
 # modify source code without re-installing dependencies
-RUN cd code/ && cabal install --only-dependencies -j4
+# RUN cd code/ && cabal install --only-dependencies -j4
+RUN cd code/ && cabal install --only-dependencies
 
 # Add and Install Application Code
 ADD . /code

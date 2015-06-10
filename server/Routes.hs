@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Web.Routes where
+module Routes where
 
 
 import Web.Scotty
-import Web.Actions.Database
+import Actions.Database
 import Control.Monad.Trans (liftIO)
 
 
@@ -14,7 +14,7 @@ dbName = "127.0.0.1"
 
 routes :: ScottyM ()
 routes = do
-  get "/" $ file "app/Web/Views/index.html"
+  get "/" $ file "public/index.html"
 
   get "/databases" $ do
       dbs <- liftIO $ getAllDatabases dbName

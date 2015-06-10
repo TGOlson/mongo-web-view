@@ -1,7 +1,7 @@
 module Main where
 
 
-import Web.Server
+import Server
 
 
 main :: IO ()

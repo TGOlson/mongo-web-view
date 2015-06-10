@@ -20,6 +20,7 @@ getParsedBody :: FromJSON a => String -> IO (Maybe a)
 getParsedBody url = do
   r <- simpleHTTP $ getRequest (mkUrl url)
   rsp <- getResponseBody r
+  print rsp
   return . decode $ pack rsp
 
 

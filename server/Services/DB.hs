@@ -1,4 +1,4 @@
-module DB.DB where
+module Services.DB where
 
 
 import Database.MongoDB
