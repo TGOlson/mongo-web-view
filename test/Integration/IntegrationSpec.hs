@@ -20,7 +20,6 @@ getParsedBody :: FromJSON a => String -> IO (Maybe a)
 getParsedBody url = do
   r <- simpleHTTP $ getRequest (mkUrl url)
   rsp <- getResponseBody r
-  print rsp
   return . decode $ pack rsp
 
 
@@ -30,6 +29,7 @@ main = hspec spec
 
 spec :: Spec
 spec = before_ seedTestDb $ do
+-- spec = do
   describe "GET /databases" $
     it "should return a list of databases" $
 

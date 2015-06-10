@@ -14,4 +14,4 @@ test:
   links:
     - server
     - db
-  command: cabal run test
+  command: cabal test

@@ -9,7 +9,7 @@ import Database.MongoDB
 
 seedTestDb :: IO ()
 seedTestDb = do
-  pipe <- connect (host "127.0.0.1")
+  pipe <- connect (host "localhost")
   -- pipe <- connect (host "db")
 
   let run = access pipe master testDb

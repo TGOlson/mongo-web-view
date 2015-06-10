@@ -40,7 +40,7 @@ Go to `localhost:8000` to check it out.
 Run tests
 
 ```
-$ cabal run test
+$ cabal test
 Integration.Integration
   GET /databases
     should return a list of databases
@@ -51,4 +51,4 @@ Integration.Integration
 
 Finished in 0.5316 seconds
 3 examples, 0 failures
-``
+```

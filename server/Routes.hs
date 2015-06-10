@@ -10,7 +10,7 @@ import Control.Monad.Trans (liftIO)
 
 dbName :: String
 -- dbName = "db"
-dbName = "127.0.0.1"
+dbName = "localhost"
 
 routes :: ScottyM ()
 routes = do
