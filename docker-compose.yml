@@ -1,5 +1,7 @@
 api:
   build: ./api
+
+  # db link for testing only - can it be removed?
   links:
    - db
   ports:

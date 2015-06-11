@@ -10,45 +10,28 @@ Run with docker and docker compose
 
 ```
 $ docker-compose build
-$ docker-compose up server
-```
-
-Run the tests
-
-```
-$ docker-compose up test
+$ docker-compose up -d app
 ```
 
 Go to `<boot2docker ip>:8000` to check it out.
 
-To run without docker:
-
-Install Dependencies
+Run the tests
 
 ```
-$ cabal install --only-dependencies
-```
+$ docker-compose run test
+Running test...
 
-Run Server
-
-```
-$ cabal run app
-```
-
-Go to `localhost:8000` to check it out.
-
-Run tests
-
-```
-$ cabal run test
 Integration.Integration
-  GET /databases
+  POST /databases
     should return a list of databases
-  GET /databases/:db
+    should return an error when no host is provided
+  POST /databases/:db
     should return a list of collections for the specified database
-  GET /databases/:db/:collection
+    should return an error when no host is provided
+  POST /databases/:db/:collection
     should return a list of docs for the specified collection
+    should return an error when no host is provided
 
-Finished in 0.5316 seconds
-3 examples, 0 failures
+Finished in 1.2840 seconds
+6 examples, 0 failures
 ```
