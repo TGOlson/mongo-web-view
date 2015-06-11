@@ -1,6 +1,6 @@
 module Main where
 
-import Server
+import Api
 
 main :: IO ()
 main = runWebServer

@@ -12,8 +12,6 @@ import Data.Aeson.Types
 
 routes :: ScottyM ()
 routes = do
-  get "/" $ file "public/index.html"
-
   post "/databases" $ doWithHost getAllDatabases
 
   post "/databases/:db" $ do

@@ -13,8 +13,7 @@ import Integration.Setup
 
 
 mkUrl :: String -> String
--- mkUrl s = "http://192.168.59.103:8000" ++ s
-mkUrl s = "http://localhost:8000" ++ s
+mkUrl s = "http://api:8000" ++ s
 
 
 shouldReturnJson :: IO (Maybe Value) -> [Pair] -> Expectation
@@ -41,7 +40,7 @@ spec = before_ seedTestDb $ do
     it "should return a list of databases" $
 
       -- only check that the test-db is included in the response to avoid having to drop all dbs
-      postWithBody "/databases" ["host" .= String "localhost"] `shouldReturnListContaining` [testDb]
+      postWithBody "/databases" ["host" .= String "db"] `shouldReturnListContaining` [testDb]
 
     it "should return an error when no host is provided" $
       postWithBody "/databases" [] `shouldReturnJson` ["error" .= String "Must provide host"]
@@ -49,7 +48,7 @@ spec = before_ seedTestDb $ do
 
   describe "POST /databases/:db" $ do
     it "should return a list of collections for the specified database" $
-      postWithBody "/databases/_testdb" ["host" .= String "localhost"] `shouldReturn` Just collections
+      postWithBody "/databases/_testdb" ["host" .= String "db"] `shouldReturn` Just collections
 
     it "should return an error when no host is provided" $
       postWithBody "/databases/_testdb" [] `shouldReturnJson` ["error" .= String "Must provide host"]
@@ -57,7 +56,7 @@ spec = before_ seedTestDb $ do
 
   describe "POST /databases/:db/:collection" $ do
     it "should return a list of docs for the specified collection" $
-      postWithBody "/databases/_testdb/_testcollection" ["host" .= String "localhost"] `shouldReturn` Just testDocs
+      postWithBody "/databases/_testdb/_testcollection" ["host" .= String "db"] `shouldReturn` Just testDocs
 
     it "should return an error when no host is provided" $
       postWithBody "/databases/_testdb/_testcollection" [] `shouldReturnJson` ["error" .= String "Must provide host"]

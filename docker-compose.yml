@@ -1,10 +1,18 @@
-server:
-  build: ./server
+api:
+  build: ./api
   links:
    - db
   ports:
    - "8000:8000"
   command: cabal run
+
+app:
+  build: ./app
+  links:
+   - api
+  ports:
+   - "8080:8080"
+  command: nginx
 
 db:
   image: mongo
@@ -12,6 +20,6 @@ db:
 test:
   build: ./test
   links:
-    - server
+    - api
     - db
   command: cabal run
