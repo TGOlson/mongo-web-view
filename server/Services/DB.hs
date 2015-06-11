@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Services.DB where
 
 
@@ -5,20 +7,22 @@ import Database.MongoDB
 import Data.Aeson.Bson()
 
 
-connectTo :: String -> IO Pipe
-connectTo = connect . host
+run :: Action IO a -> Database -> String -> IO a
+run action db hostName = do
+  pipe <- connect (host hostName)
+  access pipe master db action
 
 
-runAction :: Action IO a -> Database -> Pipe -> IO a
-runAction action dbName pipe = access pipe master dbName action
+getAllDatabases :: String -> IO [Database]
+getAllDatabases = run allDatabases "test"
 
 
-withConnection :: (Pipe -> IO a) -> String -> IO a
-withConnection dbAction hostName = dbAction =<< connectTo hostName
+getAllCollections :: Database -> String -> IO [Collection]
+getAllCollections = run allCollections
 
 
-runActionWithConnection :: Action IO a -> String -> Database -> IO a
-runActionWithConnection action hostName dbName = withConnection (runAction action dbName) hostName
+getAllDocuments :: Database -> Collection -> String -> IO [Document]
+getAllDocuments db collectionName = run (findAll collectionName) db
 
 
 findAll :: Collection -> Action IO [Document]

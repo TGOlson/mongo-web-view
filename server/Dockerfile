@@ -3,7 +3,7 @@ FROM haskell:7.8
 RUN cabal update
 
 # Add .cabal file
-ADD mongo-web-view.cabal ./code/mongo-web-view.cabal
+ADD server.cabal ./code/server.cabal
 
 # Docker will cache this command as a layer, freeing us up to
 # modify source code without re-installing dependencies

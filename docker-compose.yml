@@ -1,17 +1,17 @@
 server:
-  build: .
+  build: ./server
   links:
    - db
   ports:
    - "8000:8000"
-  command: cabal run server
+  command: cabal run
 
 db:
   image: mongo
 
 test:
-  build: .
+  build: ./test
   links:
     - server
     - db
-  command: cabal test
+  command: cabal run

@@ -4,29 +4,39 @@ module Routes where
 
 
 import Web.Scotty
-import Actions.Database
+import Services.DB
 import Control.Monad.Trans (liftIO)
+import Data.Aeson hiding (json)
+import Data.Aeson.Types
 
-
-dbName :: String
--- dbName = "db"
-dbName = "localhost"
 
 routes :: ScottyM ()
 routes = do
   get "/" $ file "public/index.html"
 
-  get "/databases" $ do
-      dbs <- liftIO $ getAllDatabases dbName
-      json dbs
+  post "/databases" $ doWithHost getAllDatabases
 
-  get "/databases/:db" $ do
-      db <- param "db"
-      collections <- liftIO $ getAllCollections dbName db
-      json collections
+  post "/databases/:db" $ do
+    db <- param "db"
+    doWithHost $ getAllCollections db
 
-  get "/databases/:db/:collection" $ do
-      db <- param "db"
-      collection <- param "collection"
-      docs <- liftIO $ getAllDocuments dbName db collection
-      json docs
+  post "/databases/:db/:collection" $ do
+    db <- param "db"
+    collection <- param "collection"
+
+    doWithHost $ getAllDocuments db collection
+
+
+getHost ::ActionM (Maybe String)
+getHost = do
+  b <- jsonData
+  return $ parseMaybe (.: "host") b
+
+
+doWithHost :: ToJSON a => (String -> IO a) -> ActionM ()
+doWithHost f = do
+  maybeHost <- getHost
+
+  case maybeHost of
+    Nothing -> json $ object ["error" .= String "Must provide host"]
+    (Just host) -> json =<< liftIO (f host)

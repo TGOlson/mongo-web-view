@@ -40,7 +40,7 @@ Go to `localhost:8000` to check it out.
 Run tests
 
 ```
-$ cabal test
+$ cabal run test
 Integration.Integration
   GET /databases
     should return a list of databases
