@@ -2,8 +2,8 @@ api:
   build: ./api
 
   # db link for testing only - can it be removed?
-  links:
-   - db
+  # links:
+  #  - db
   ports:
    - "8000:8000"
   command: cabal run
@@ -15,13 +15,13 @@ app:
   ports:
    - "8080:8080"
   command: nginx
-
-db:
-  image: mongo
+#
+# db:
+#   image: mongo
 
 test:
-  build: ./test
+  build: ./spec
   links:
     - api
-    - db
+    # - db
   command: cabal run

@@ -29,13 +29,16 @@ docs :: [Document]
 docs = map (\(TestDoc t) -> ["title" =: t]) testDocs
 
 
+hostName :: String
+hostName = "ds043972.mongolab.com:43972"
+
+
 testDb :: Database
-testDb = "_testdb"
+testDb = "test-db"
 
 
 collections :: [Collection]
 collections = [
-    "_testcollection",
-    "system.indexes",
-    "xemptycollection"
+    "test-collection-1",
+    "test-collection-2"
   ]

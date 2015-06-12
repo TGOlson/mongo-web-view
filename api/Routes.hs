@@ -12,7 +12,7 @@ import Data.Aeson.Types
 
 routes :: ScottyM ()
 routes = do
-  post "/databases" $ doWithHost getAllDatabases
+  -- post "/databases" $ doWithHost getAllDatabases
 
   post "/databases/:db" $ do
     db <- param "db"
