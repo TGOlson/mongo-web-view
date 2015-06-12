@@ -3,10 +3,38 @@
 module Integration.Data where
 
 
-import Database.MongoDB
-import Data.Aeson hiding (String)
+import Database.MongoDB hiding (String)
+import Data.Aeson
+import Data.Aeson.Types
 import Control.Applicative
 import Control.Monad
+
+
+testHost :: String
+testHost = "ds043972.mongolab.com:43972"
+
+
+testDb :: Database
+testDb = "test-db"
+
+
+testUser :: Username
+testUser = "test-admin"
+
+
+testPw :: Username
+testPw = "password"
+
+
+configError :: [Pair]
+configError = ["error" .= String "Must provide all required config fields."]
+
+
+collections :: [Collection]
+collections = [
+    "test-collection-1",
+    "test-collection-2"
+  ]
 
 
 -- Create test doc data type to resolve issue of aeson versions between aeson-bson and wreq
@@ -27,18 +55,3 @@ testDocs = [
 
 docs :: [Document]
 docs = map (\(TestDoc t) -> ["title" =: t]) testDocs
-
-
-hostName :: String
-hostName = "ds043972.mongolab.com:43972"
-
-
-testDb :: Database
-testDb = "test-db"
-
-
-collections :: [Collection]
-collections = [
-    "test-collection-1",
-    "test-collection-2"
-  ]

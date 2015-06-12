@@ -13,8 +13,17 @@ import Integration.Setup
 
 
 mkUrl :: String -> String
-mkUrl s = "http://localhost:8000" ++ s
--- mkUrl s = "http://api:8000" ++ s
+mkUrl s = "http://api:8000" ++ s
+-- mkUrl s = "http://localhost:8000" ++ s
+
+
+postBody :: [Pair]
+postBody = [
+    "host"     .= testHost,
+    "dbname"   .= testDb,
+    "username" .= testUser,
+    "password" .= testPw
+  ]
 
 
 shouldReturnJson :: IO (Maybe Value) -> [Pair] -> Expectation
@@ -31,37 +40,23 @@ postWithBody path body = do
   return $ decode (r ^. responseBody)
 
 
-postBody :: [Pair]
-postBody = [
-    "host"     .= hostName,
-    "username" .= String "test-admin",
-    "password" .= String "password",
-    "db"       .= testDb
-    -- "domain"   .= hostName
-  ]
-
--- mongodb://user:password@domain:port/dbname
-
--- POST /collections
--- POST /collections/:collection
-
 main :: IO ()
 main = hspec spec
 
 
 spec :: Spec
 spec = before_ seedTestDb $ do
-  describe "POST /databases/:db" $ do
+  describe "POST /collections" $ do
     it "should return a list of collections for the specified database" $
-      postWithBody "/databases/test-db" postBody `shouldReturnListContaining` collections
+      postWithBody "/collections" postBody `shouldReturnListContaining` collections
 
-    it "should return an error when no host is provided" $
-      postWithBody "/databases/test-db" [] `shouldReturnJson` ["error" .= String "Must provide host"]
+    it "should return an error when no config is provided" $
+      postWithBody "/collections" [] `shouldReturnJson` configError
 
 
-  describe "POST /databases/:db/:collection" $ do
+  describe "POST /collections/:collection" $ do
     it "should return a list of docs for the specified collection" $
-      postWithBody "/databases/test-db/test-collection-1" postBody `shouldReturn` Just testDocs
+      postWithBody "/collections/test-collection-1" postBody `shouldReturn` Just testDocs
 
-    it "should return an error when no host is provided" $
-      postWithBody "/databases/test-db/test-collection-1" [] `shouldReturnJson` ["error" .= String "Must provide host"]
+    it "should return an error when no config is provided" $
+      postWithBody "/collections/test-collection-1" [] `shouldReturnJson` configError

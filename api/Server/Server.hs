@@ -1,4 +1,4 @@
-module Api where
+module Server where
 
 
 import Web.Scotty

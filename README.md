@@ -22,16 +22,13 @@ $ docker-compose run test
 Running test...
 
 Integration.Integration
-  POST /databases
-    should return a list of databases
-    should return an error when no host is provided
-  POST /databases/:db
+  POST /collections
     should return a list of collections for the specified database
-    should return an error when no host is provided
-  POST /databases/:db/:collection
+    should return an error when no config is provided
+  POST /collections/:collection
     should return a list of docs for the specified collection
-    should return an error when no host is provided
+    should return an error when no config is provided
 
-Finished in 1.2840 seconds
-6 examples, 0 failures
+Finished in 7.5418 seconds
+4 examples, 0 failures
 ```

@@ -1,0 +1,14 @@
+<md-content layout="column" flex="33" offset="33">
+
+  <h2>Welcome to Mongo Web View</h2>
+  <p>Enter your connection string below to being exploring your data.</p>
+
+  <p>mongodb://user:password@domain:port/dbname</p>
+
+  <md-input-container flex>
+    <label>Conntection String</label>
+    <input ng-model="connectionString">
+  </md-input-container>
+
+  <md-button class="md-raised md-primary" ng-click="connectionCtrl.connect(connectionString)">Connect</md-button>
+</md-content>

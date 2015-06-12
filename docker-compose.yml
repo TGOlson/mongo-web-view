@@ -6,7 +6,7 @@ api:
   #  - db
   ports:
    - "8000:8000"
-  command: cabal run
+  command: cabal run api
 
 app:
   build: ./app
@@ -24,4 +24,4 @@ test:
   links:
     - api
     # - db
-  command: cabal run
+  command: cabal run spec
