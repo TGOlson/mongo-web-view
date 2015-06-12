@@ -25,13 +25,13 @@ spec :: Spec
 spec =
   describe "parseConnectionString" $ do
     it "should parse a valid connection string" $
-      parseConnectionString connectionString `shouldBe` Right ["user", "password", "domain:port", "dbname"]
+      parseConnectionString connectionString `shouldBe` Right ["user", "password", "domain", "port", "dbname"]
 
     it "should return an error when passed an invalid connection string" $ do
       parseConnectionString "foo" `shouldHaveParseError` ["(line 1, column 1):",
-                                                        "unexpected \"f\"",
-                                                        "expecting \"mongodb://\""]
+                                                          "unexpected \"f\"",
+                                                          "expecting \"mongodb://\""]
 
       parseConnectionString "mongodb://foo@bar" `shouldHaveParseError` ["(line 1, column 14):",
-                                                                      "unexpected \"@\"",
-                                                                      "expecting letter or \":\""]
+                                                                        "unexpected \"@\"",
+                                                                        "expecting letter or \":\""]
