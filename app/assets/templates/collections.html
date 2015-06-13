@@ -1,0 +1,9 @@
+<md-subheader class="md-no-sticky">Collections</md-subheader>
+
+<md-progress-circular ng-show="collectionsCtrl.loading" md-mode="indeterminate"></md-progress-circular>
+
+<md-list-item ng-hide="collectionsCtrl.loading" ng-repeat="collection in collectionsCtrl.collections">
+  <md-button md-no-ink
+    ui-sref="documents({collection: collection})"
+    class="md-primary">{{ collection }}</md-button>
+</md-list-item>
