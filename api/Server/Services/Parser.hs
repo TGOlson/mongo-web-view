@@ -1,9 +1,9 @@
 module Services.Parser where
 
 
-import Text.Parsec hiding (Error)
+import Text.Parsec
 import Control.Applicative ((<$>))
-import Types.Error
+import Types.ApiError
 
 
 type MongoUriParts = (String, String, String, Int, String)
@@ -43,5 +43,5 @@ parser = do
 -- Parse connection string to list of data elements
 -- "mongodb://user:password@domain:port/dbname"
 -- [user, password, domain, port, dbname]
-parseMongoUriParts :: String -> Either Error MongoUriParts
+parseMongoUriParts :: String -> Either ApiError MongoUriParts
 parseMongoUriParts = convertErrorType . parse parser ""

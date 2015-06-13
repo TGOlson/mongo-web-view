@@ -6,7 +6,7 @@ module Services.DB where
 import Database.MongoDB hiding (host)
 import Data.Aeson.Bson()
 import Services.Parser
-import Types.Error
+import Types.ApiError
 import Data.Text (pack)
 
 
@@ -20,7 +20,7 @@ data MongoConfig = MongoConfig {
   deriving (Show, Eq)
 
 
-parseMongoConfig :: String -> Either Error MongoConfig
+parseMongoConfig :: String -> Either ApiError MongoConfig
 parseMongoConfig = fmap uriPartsToMongoConfig . parseMongoUriParts
 
 

@@ -29,7 +29,8 @@ library
                        Routes,
                        Services.DB,
                        Services.Parser,
-                       Types.Error
+                       Types.ApiError,
+                       Types.ApiResponse
 
 
 executable api

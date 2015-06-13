@@ -45,7 +45,7 @@ spec = before_ seedTestDb $ do
     it "should return a list of collections for the specified database" $
       postWithBody "/collections" postBody `shouldReturnListContaining` collections
 
-    it "should return an error when no is provided" $
+    it "should return an error when no uri is provided" $
       postWithBody "/collections" [] `shouldReturnJson`
         ["error" .= String "Must provide mongo uri."]
 
@@ -58,6 +58,6 @@ spec = before_ seedTestDb $ do
     it "should return a list of docs for the specified collection" $
       postWithBody "/collections/test-collection-1" postBody `shouldReturn` Just testDocs
 
-    it "should return an error when an invalid uri provided" $
+    it "should return an error when an invalid uri is provided" $
       postWithBody "/collections/test-collection-1" [] `shouldReturnJson`
         ["error" .= String "Must provide mongo uri."]
