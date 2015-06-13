@@ -6,7 +6,9 @@ module Routes where
 import Web.Scotty
 import Services.DB
 import Control.Monad.Trans (liftIO)
-import Data.Aeson hiding (json)
+import Data.Aeson hiding (json, Error)
+import Data.Aeson.Types hiding (Error)
+import Types.Error
 
 
 routes :: ScottyM ()
@@ -18,16 +20,25 @@ routes = do
     doWithMongoConfig $ getAllDocuments collection
 
 
-parseMongoConfig ::ActionM (Maybe MongoConfig)
-parseMongoConfig = do
-  b <- body
-  return $ decode b
+parseMongoUri :: ActionM (Maybe String)
+parseMongoUri = do
+  b <- jsonData
+  return $ parseMaybe (.: "mongoUri") b
+
+
+getMongoConfig :: ActionM (Either Error MongoConfig)
+getMongoConfig = do
+  maybeUri <- parseMongoUri
+
+  return $ case maybeUri of
+    Nothing -> Left $ Error "Must provide mongo uri."
+    (Just uri) -> parseMongoConfig uri
 
 
 doWithMongoConfig :: ToJSON a => (MongoConfig -> IO a) -> ActionM ()
 doWithMongoConfig f = do
-  maybeConfig <- parseMongoConfig
+  eitherConfig <- getMongoConfig
 
-  case maybeConfig of
-    Nothing -> json $ object ["error" .= String "Must provide all required config fields."]
-    (Just config) -> json =<< liftIO (f config)
+  case eitherConfig of
+    (Left (Error msg)) -> json $ object ["error" .= msg]
+    (Right config) -> json =<< liftIO (f config)

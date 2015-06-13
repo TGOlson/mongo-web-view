@@ -5,26 +5,33 @@ module Services.DB where
 
 import Database.MongoDB hiding (host)
 import Data.Aeson.Bson()
-import Data.Aeson
-import Control.Monad
-import Control.Applicative
+import Services.Parser
+import Types.Error
+import Data.Text (pack)
+
 
 
 data MongoConfig = MongoConfig {
-    host     :: String,
-    dbname   :: Database,
     username :: Username,
-    password :: Password
+    password :: Password,
+    host     :: String,
+    dbname   :: Database
   }
+  deriving (Show, Eq)
 
 
-instance FromJSON MongoConfig where
-    parseJSON (Object v) = MongoConfig <$>
-                           v .: "host" <*>
-                           v .: "dbname" <*>
-                           v .: "username" <*>
-                           v .: "password"
-    parseJSON _          = mzero
+parseMongoConfig :: String -> Either Error MongoConfig
+parseMongoConfig = fmap uriPartsToMongoConfig . parseMongoUriParts
+
+
+uriPartsToMongoConfig :: MongoUriParts -> MongoConfig
+uriPartsToMongoConfig (user, pw, domain, port, db) =
+  MongoConfig {
+    username = pack user,
+    password = pack pw  ,
+    host     = domain ++ ":" ++ show port,
+    dbname   = pack db
+  }
 
 
 makePipe :: MongoConfig -> IO Pipe

@@ -28,7 +28,8 @@ library
   exposed-modules:     Server,
                        Routes,
                        Services.DB,
-                       Services.Parser
+                       Services.Parser,
+                       Types.Error
 
 
 executable api

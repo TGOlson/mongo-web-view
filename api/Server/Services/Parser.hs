@@ -1,30 +1,47 @@
 module Services.Parser where
 
 
-import Text.Parsec
+import Text.Parsec hiding (Error)
+import Control.Applicative ((<$>))
+import Types.Error
+
+
+type MongoUriParts = (String, String, String, Int, String)
 
 
 prefix :: Parsec String () String
 prefix = string "mongodb://"
 
 
-letters :: Parsec String () String
-letters = many1 letter
+uriChar :: Parsec String () Char
+uriChar = letter <|> char '-' <|> char '_'
 
 
-parser :: Parsec String () [String]
+uriChars :: Parsec String () String
+uriChars = many1 uriChar
+
+
+domainId :: Parsec String () String
+domainId = many1 (uriChar <|> char '.' <|> digit)
+
+
+number :: Parsec String () Int
+number = read <$> many1 digit
+
+
+parser :: Parsec String () MongoUriParts
 parser = do
-  user     <- prefix   >> letters
-  password <- char ':' >> letters
-  domain   <- char '@' >> letters
-  port     <- char ':' >> letters
-  dbname   <- char '/' >> letters
+  user     <- prefix   >> uriChars
+  password <- char ':' >> uriChars
+  domain   <- char '@' >> domainId
+  port     <- char ':' >> number
+  dbname   <- char '/' >> uriChars
 
-  return [user, password, domain, port, dbname]
+  return (user, password, domain, port, dbname)
 
 
--- Parse connection string
+-- Parse connection string to list of data elements
 -- "mongodb://user:password@domain:port/dbname"
--- ["user", "password", "domain", "port", "dbname"]
-parseConnectionString :: String -> Either ParseError [String]
-parseConnectionString = parse parser ""
+-- [user, password, domain, port, dbname]
+parseMongoUriParts :: String -> Either Error MongoUriParts
+parseMongoUriParts = convertErrorType . parse parser ""

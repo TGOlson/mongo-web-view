@@ -26,8 +26,12 @@ testPw :: Username
 testPw = "password"
 
 
+testUri :: String
+testUri = "mongodb://test-admin:password@ds043972.mongolab.com:43972/test-db"
+
+
 configError :: [Pair]
-configError = ["error" .= String "Must provide all required config fields."]
+configError = ["error" .= String "Must provide mongo uri."]
 
 
 collections :: [Collection]
