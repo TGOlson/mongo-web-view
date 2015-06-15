@@ -1,5 +1,6 @@
 module Types.ApiResponse where
 
+
 import Data.Aeson
 import Types.ApiError
 

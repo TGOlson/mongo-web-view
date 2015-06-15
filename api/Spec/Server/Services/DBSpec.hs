@@ -19,7 +19,7 @@ spec =
           username = "user-name",
           password = "password",
           host     = "d0.domain.com:123",
-          dbname   =  "db_name"
+          dbname   = "db_name"
         }
 
       parseMongoConfig "mongodb://user-name:password@d0.domain.com:123/db_name"
