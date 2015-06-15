@@ -1,0 +1,4 @@
+<div layout="{{docCtrl.expanded ? 'column' : 'row' }}">
+  <i class="material-icons md-18" ng-click="docCtrl.toggle()">add</i>
+  <span ng-repeat="(key, val) in docCtrl.doc"><strong>{{key}}</strong> {{val}}</span>
+</div>

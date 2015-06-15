@@ -1,9 +1,16 @@
-<md-subheader class="md-no-sticky">Collections</md-subheader>
+<div layout="row">
+  <md-sidenav md-component-id="left" md-is-locked-open="true">
+    <md-subheader class="md-no-sticky">Collections</md-subheader>
 
-<md-progress-circular ng-show="collectionsCtrl.loading" md-mode="indeterminate"></md-progress-circular>
+    <md-content ng-show="collectionsCtrl.loading" >
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </md-content>
 
-<md-list-item ng-hide="collectionsCtrl.loading" ng-repeat="collection in collectionsCtrl.collections">
-  <md-button md-no-ink
-    ui-sref="documents({collection: collection})"
-    class="md-primary">{{ collection }}</md-button>
-</md-list-item>
+    <md-content ng-hide="collectionsCtrl.loading" ng-repeat="collection in collectionsCtrl.collections">
+      <md-button ui-sref="collections.documents({collection: collection})"
+        class="md-primary">{{ collection }}</md-button>
+    </md-content>
+  </md-sidenav>
+
+  <div ui-view></div>
+</div>

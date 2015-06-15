@@ -17,13 +17,20 @@ angular.module('mwv')
       .catch(logApiError);
   }
 
+  function getDocuments(collection) {
+    return $http.post('/api/collections/' + collection, {mongoUri: uri})
+      .then(R.prop('data'))
+      .catch(logApiError);
+  }
+
   function logApiError(err) {
     console.log('ApiError', err);
   }
 
   return {
     setMongoUri    : setMongoUri,
-    getCollections : getCollections
+    getCollections : getCollections,
+    getDocuments   : getDocuments
   };
 
 }]);

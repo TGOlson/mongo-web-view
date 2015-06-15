@@ -1,1 +1,7 @@
-<h1>Docs</h1>
+<md-content ng-show="documentsCtrl.loading">
+  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</md-content>
+
+<md-list-item ng-hide="documentsCtrl.loading" ng-repeat="doc in documentsCtrl.documents">
+  <mwv-doc doc="doc"></mwv-doc>
+</md-list-item>
