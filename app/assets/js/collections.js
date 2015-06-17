@@ -2,10 +2,14 @@ angular.module('mwv')
 
 .config(['$stateProvider', function($stateProvider) {
 
-  $stateProvider.state('collections', {
-    url: '/collections',
-    templateUrl: '/templates/collections.html',
-    controller: 'CollectionsCtrl as collectionsCtrl'
+  $stateProvider.state('mwv.collections', {
+    url   : '/collections',
+    views : {
+      'content@' : {
+        templateUrl : '/templates/collections.html',
+        controller  : 'CollectionsCtrl as collectionsCtrl'
+      }
+    }
   });
 }])
 

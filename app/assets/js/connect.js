@@ -2,10 +2,14 @@ angular.module('mwv')
 
 .config(['$stateProvider', function($stateProvider) {
 
-  $stateProvider.state('connect', {
-    url: '/connect',
-    templateUrl: '/templates/connect.html',
-    controller: 'ConnectionCtrl as connectionCtrl'
+  $stateProvider.state('mwv.connect', {
+    url   : '/connect',
+    views : {
+      'content@' : {
+        templateUrl : '/templates/connect.html',
+        controller  : 'ConnectionCtrl as connectionCtrl'
+      }
+    }
   });
 }])
 

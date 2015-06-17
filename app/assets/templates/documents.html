@@ -2,6 +2,22 @@
   <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 </md-content>
 
-<md-list-item ng-hide="documentsCtrl.loading" ng-repeat="doc in documentsCtrl.documents">
-  <mwv-doc doc="doc"></mwv-doc>
-</md-list-item>
+
+<md-grid-list md-cols="6" md-gutter="12px" md-row-height="1:1">
+
+  <md-grid-tile class="doc"
+    ng-class="expanded ? 'expanded' : 'closed'"
+    ng-repeat="doc in documentsCtrl.documents"
+    md-rowspan="{{expanded ? 2 : 1}}"
+    md-colspan="{{expanded ? 2 : 1}}"
+    ng-click="expanded = !expanded">
+
+    <div class="content-wrapper">
+      <div layout="row" ng-repeat="(key, val) in doc" class="key-val-pair">
+        <span class="key">{{key}}:</span>
+        <span flex class="val">{{val}}</span>
+      </div>
+    </div>
+
+  </md-grid-tile>
+</md-grid-list>

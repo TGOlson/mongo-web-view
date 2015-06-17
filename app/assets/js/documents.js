@@ -2,10 +2,14 @@ angular.module('mwv')
 
 .config(['$stateProvider', function($stateProvider) {
 
-  $stateProvider.state('collections.documents', {
-    url: '/collections/:collection',
-    templateUrl: '/templates/documents.html',
-    controller: 'DocumentsCtrl as documentsCtrl',
+  $stateProvider.state('mwv.collections.documents', {
+    url   : '/:collection',
+    views : {
+      'documents' : {
+        templateUrl : '/templates/documents.html',
+        controller  : 'DocumentsCtrl as documentsCtrl',
+      }
+    }
   });
 }])
 
@@ -20,4 +24,5 @@ angular.module('mwv')
     documentsCtrl.documents = documents;
     documentsCtrl.loading = false;
   }
+
 }]);

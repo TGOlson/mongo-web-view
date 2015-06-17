@@ -2,3 +2,12 @@
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
+
+md-grid-list {
+  margin: 8px;
+}
+
+/*A little hacking to stop grid list tiles from flexing*/
+md-grid-tile.doc figure {
+  display: inherit !important;
+}

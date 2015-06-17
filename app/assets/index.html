@@ -4,34 +4,16 @@
     <meta charset="utf-8">
     <title>Mongo Web View</title>
 
+    <link rel="stylesheet" href="/css/doc.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <md-content>
-      <md-toolbar>
-        <div class="md-toolbar-tools">
-          <md-button class="md-icon-button" aria-label="Settings">
-            <i class="material-icons">menu</i>
-          </md-button>
-          <h2><span>Mongo Web View</span></h2>
-          <span flex></span>
-          <md-button class="md-icon-button" aria-label="Favorite">
-            <i class="material-icons">favorite</i>
-          </md-button>
-          <md-button class="md-icon-button" aria-label="More">
-            <i class="material-icons">more_vert</i>
-          </md-button>
-        </div>
-      </md-toolbar>
 
-
-      <div layout="row" flex>
-        <div layout-padding ui-view flex></div>
-      </div>
-    </md-content>
+    <div layout-padding ui-view="navbar"></div>
+    <div layout-padding ui-view="content"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.14.0/ramda.min.js"></script>
 
@@ -47,7 +29,6 @@
     <script src="/js/connect.js"></script>
     <script src="/js/collections.js"></script>
     <script src="/js/documents.js"></script>
-    <script src="/js/doc.js"></script>
     <script src="/js/vendor.js"></script>
   </body>
 </html>

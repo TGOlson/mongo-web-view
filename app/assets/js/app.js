@@ -11,6 +11,15 @@ angular.module('mwv', [
   });
 }])
 
-.config(['$urlRouterProvider', function($urlRouterProvider) {
+.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
   $urlRouterProvider.otherwise('connect');
+
+  $stateProvider.state('mwv', {
+    abstract: true,
+    views: {
+      'navbar@': {
+        templateUrl: '/templates/navbar.html'
+      }
+    }
+  });
 }]);

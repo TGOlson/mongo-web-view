@@ -5,7 +5,8 @@ angular.module('mwv')
   // var uri = null;
 
   // Temp default uri for development
-  var uri = "mongodb://test-admin:password@ds043972.mongolab.com:43972/test-db";
+  // var uri = 'mongodb://test-admin:password@ds043972.mongolab.com:43972/test-db';
+  var uri = 'mongodb://crowdcast:crowdcast@dfw-mongos0.objectrocket.com:17006/crowdcast';
 
   function setMongoUri(_uri) {
     uri = _uri;
