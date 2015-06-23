@@ -10,7 +10,7 @@ Run with docker and docker compose
 
 ```
 $ docker-compose build
-$ docker-compose up -d app
+$ docker-compose up -d proxy
 ```
 
 Go to `<boot2docker ip>:8000` to check it out.

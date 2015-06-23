@@ -4,13 +4,17 @@ api:
    - "8000:8000"
   command: cabal run api
 
-app:
-  build: ./app
-  links:
-   - api
+client:
+  build: ./client
+
+proxy:
+  image: tgolson/nginx-spa
   ports:
-   - "8080:8080"
-  command: nginx
+    - "8080:8080"
+  volumes_from:
+    - client
+  links:
+    - api
 
 test:
   build: ./spec
