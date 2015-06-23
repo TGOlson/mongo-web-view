@@ -16,8 +16,8 @@ proxy:
   links:
     - api
 
-test:
-  build: ./spec
+integrationtest:
+  build: ./integration-test
   links:
     - api
-  command: cabal run spec
+  command: cabal run integration-test

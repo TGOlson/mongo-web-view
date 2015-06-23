@@ -3,7 +3,7 @@ FROM haskell:7.8
 RUN cabal update
 
 # Add .cabal file
-ADD spec.cabal ./code/spec.cabal
+ADD integration-test.cabal ./code/integration-test.cabal
 
 # Docker will cache this command as a layer, freeing us up to
 # modify source code without re-installing dependencies

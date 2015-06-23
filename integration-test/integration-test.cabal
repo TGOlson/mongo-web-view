@@ -1,4 +1,4 @@
-name:                spec
+name:                integration-test
 version:             0.1.0.0
 synopsis:            Mongo web view.
 description:         Explore a mongo database with a simple web UI.
@@ -10,7 +10,7 @@ build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
-executable spec
+executable integration-test
   hs-source-dirs:      .
   main-is:             Spec.hs
   default-language:    Haskell2010
