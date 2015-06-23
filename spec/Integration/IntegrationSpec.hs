@@ -13,8 +13,7 @@ import Integration.Setup
 
 
 mkUrl :: String -> String
--- mkUrl s = "http://api:8000" ++ s
-mkUrl s = "http://localhost:8000" ++ s
+mkUrl s = "http://api:8000" ++ s
 
 
 postBody :: [Pair]

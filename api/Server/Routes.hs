@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE FlexibleInstances #-}
 
 module Routes where
 
@@ -7,7 +6,8 @@ module Routes where
 import Web.Scotty
 import Services.DB
 import Control.Monad.Trans (liftIO)
-import Data.Aeson hiding (json, Error)
+import Control.Applicative
+import Data.Aeson hiding (json)
 import Data.Aeson.Types (parseMaybe)
 import Types.ApiError
 import Types.ApiResponse
@@ -37,6 +37,6 @@ doWithMongoConfig f = do
   b <- jsonData
 
   let config = getMongoConfig $ parseMongoUri b
-  result <- liftIO . T.sequence $ fmap f config
+  result <- liftIO . T.sequence $ f <$> config
 
   json $ ApiResponse result

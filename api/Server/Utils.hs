@@ -2,5 +2,4 @@ module Utils where
 
 
 maybeToEither :: a -> Maybe b -> Either a b
-maybeToEither x Nothing = Left x
-maybeToEither _ (Just x) = Right x
+maybeToEither x = maybe (Left x) Right

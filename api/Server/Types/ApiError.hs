@@ -18,5 +18,4 @@ instance ToJSON ApiError where
 
 
 convertErrorType :: Show a => Either a b -> Either ApiError b
-convertErrorType (Left err) = Left . ApiError $ show err
-convertErrorType (Right x) = Right x
+convertErrorType = either (Left . ApiError . show) Right

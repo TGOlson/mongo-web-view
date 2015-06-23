@@ -42,6 +42,5 @@ parser = do
 
 -- Parse connection string to list of data elements
 -- "mongodb://user:password@domain:port/dbname"
--- [user, password, domain, port, dbname]
 parseMongoUriParts :: String -> Either ApiError MongoUriParts
 parseMongoUriParts = convertErrorType . parse parser ""
